@@ -39,3 +39,13 @@ struct BlockLiteral {
   struct BlockDescriptor *descriptor;
   // imported variables
 };
+
+struct BlockByref {
+    void *isa;
+    struct BlockByref *forwarding;
+    int flags;
+    int size;
+    void (*Block_byref_id_object_copy)(void*, void*);
+    void (*Block_byref_id_object_dispose)(void*);
+    void *refObj;
+};
