@@ -78,12 +78,12 @@ static void _GetBlockStrongLayout(void *block, NSMutableArray *objStrongArr) {
                 continue;
             }
             
-            if (detectorRef && detectorRef->forwarding && detectorRef->forwarding->size == 48 && detectorRef->refObj) {
+            if (detectorRef && detectorRef->forwarding && detectorRef->forwarding->size == sizeof(struct BlockByref) && detectorRef->refObj) {
                 struct BlockByref *detectorRefTmp = (struct BlockByref *)malloc(sizeof(struct BlockByref));
                 
                 detectorRefTmp->forwarding = detectorRefTmp;
                 detectorRefTmp->flags = detectorRef->flags;
-                detectorRefTmp->size = 48;
+                detectorRefTmp->size = sizeof(struct BlockByref);
                 detectorRefTmp->Block_byref_id_object_dispose = detectorRef->Block_byref_id_object_dispose;
                 detectorRefTmp->refObj = detector;
                 obj[i] = detectorRefTmp;
