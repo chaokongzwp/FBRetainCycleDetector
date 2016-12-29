@@ -113,7 +113,9 @@ namespace FB { namespace AssociationManager {
       std::lock_guard<std::mutex> l(*_associationMutex);
       // Track strong references only
       if (policy == OBJC_ASSOCIATION_RETAIN ||
-          policy == OBJC_ASSOCIATION_RETAIN_NONATOMIC) {
+          policy == OBJC_ASSOCIATION_RETAIN_NONATOMIC ||
+          policy == OBJC_ASSOCIATION_COPY_NONATOMIC ||
+          policy == OBJC_ASSOCIATION_COPY) {
         _threadUnsafeSetStrongAssociation(object, key, value);
       } else {
         // We can change the policy, we need to clear out the key
